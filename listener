@@ -1,0 +1,42 @@
+import Foundation
+
+
+//creating enum for budget
+
+enum BudgetCategory{
+    
+    case home
+    case transportation
+    case groceries
+    case dining
+    case entertainment
+    
+}
+
+struct BudgetManager{
+    var allocation: [BudgetCategory:Double] = [:]
+    
+    var runningTotal: Double {
+        var total: Double = 0
+
+        for (_ , value) in allocation{
+        total = total + value
+       }
+        return total
+    }
+    
+    init(allocattion:[BudgetCategory:Double] ){
+        
+        self.allocation = [:]
+        
+    }
+    
+    mutating func allocate(Category: BudgetCategory, amount: Double) -> Bool{
+        
+        guard runningTotal>100 else{
+            return false
+        }
+        allocation[Category] = amount
+        return true;
+    }
+}
